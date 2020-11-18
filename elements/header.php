@@ -1,5 +1,5 @@
 <?php
-require_once './functions.php';
+require_once './functions/counter.php';
 ?>
 <!doctype html>
 <html lang="en">

@@ -1,5 +1,5 @@
 <?php
-require 'functions.php';
+require 'functions/counter.php';
 $year = (int)date('Y');
 $selected_year = empty($_GET['year']) ? null : (int)$_GET['year'];
 $selected_month = empty($_GET['month']) ? null : $_GET['month'];
