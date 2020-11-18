@@ -6,6 +6,7 @@ $selected_month = empty($_GET['month']) ? null : $_GET['month'];
 
 if ($selected_year && $selected_month) {
     $total = total_views_per_month($selected_year, $selected_month);
+    $detailed_total = detailed_views_per_month($selected_year, $selected_month);
 } else {
     $total = total_views();
 }
@@ -47,12 +48,31 @@ require 'elements/header.php';
         </div>
     </div>
     <div class="col-md-8">
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-body">
                 <strong style="font-size:3em;"><?= $total ?></strong>
                 Visitor<?= $total > 1 ? 's' : '' ?> in total
             </div>
         </div>
+        <?php if (isset($detailed_total)): ?>
+            <h2>Total visitors per month</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Visitors</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($detailed_total as $row): ?>
+                    <tr>
+                        <td><?= $row['day'] ?></td>
+                        <td><?= $row['visitors'] ?> visitor<?= $row['visitors'] > 1 ? 's' :''  ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
     </div>
 </div>
 <?php
