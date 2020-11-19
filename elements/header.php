@@ -1,5 +1,10 @@
 <?php
-require_once './functions/counter.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions'. DIRECTORY_SEPARATOR . 'counter.php';
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions'. DIRECTORY_SEPARATOR . 'auth.php';
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -61,11 +66,13 @@ require_once './functions/counter.php';
         <span class="navbar-toggler-icon"></span>
     </button>
 
- <!--   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <?/*= nav_menu('nav-link') */?>
+            <?php if (is_connected()): ?>
+            <li class="nav-item"><a class="nav-link" href="/php-counter-GK/logout.php">Sign out</a></li>
+            <?php endif; ?>
         </ul>
-    </div>-->
+    </div>
 </nav>
 
 <main role="main" class="container">

@@ -1,5 +1,10 @@
 <?php
-require 'functions/counter.php';
+
+require_once 'functions/auth.php';
+require_user_connection();
+
+require_once 'functions/counter.php';
+
 $year = (int)date('Y');
 $selected_year = empty($_GET['year']) ? null : (int)$_GET['year'];
 $selected_month = empty($_GET['month']) ? null : $_GET['month'];
@@ -26,7 +31,7 @@ $months = [
     '12' => 'December'
 ];
 
-require 'elements/header.php';
+require_once 'elements/header.php';
 ?>
 
 <div class="row">
@@ -67,7 +72,7 @@ require 'elements/header.php';
                 <?php foreach ($detailed_total as $row): ?>
                     <tr>
                         <td><?= $row['day'] ?></td>
-                        <td><?= $row['visitors'] ?> visitor<?= $row['visitors'] > 1 ? 's' :''  ?></td>
+                        <td><?= $row['visitors'] ?> visitor<?= $row['visitors'] > 1 ? 's' : '' ?></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
